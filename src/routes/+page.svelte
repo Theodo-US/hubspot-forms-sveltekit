@@ -3,7 +3,7 @@
   export let data;
 </script>
 
-<h1>Get your refund</h1>
+<h1>Simple Performance Form</h1>
 <form action="?/submit" method="POST">
   {#each data.formFieldGroups as group}
     <fieldset>
