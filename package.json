@@ -1,7 +1,7 @@
 {
 	"name": "hubspot-forms-sveltekit",
 	"version": "0.0.1",
-  "type": "module",
+	"type": "module",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -12,9 +12,10 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
-  "dependencies": {
-    "axios": "^1.3.4"
-  },
+	"dependencies": {
+		"axios": "^1.3.4",
+		"wrangler": "^2.14.0"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-cloudflare": "^2.2.0",

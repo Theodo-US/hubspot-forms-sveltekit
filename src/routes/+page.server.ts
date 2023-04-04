@@ -11,7 +11,8 @@ interface FormFieldGroups {
 }
 
 export async function load() {
-  const response = await axios.get<{ formFieldGroups: FormFieldGroups[] }>(
+  console.log({ HUBSPOT_FORM_ID, HUBSPOT_PORTAL_ID, HUBSPOT_PRIVATE_APP_KEY });
+  const { data } = await axios.get<{ formFieldGroups: FormFieldGroups[] }>(
     `https://api.hubapi.com/forms/v2/forms/${HUBSPOT_FORM_ID}`,
     {
       headers: {
@@ -19,7 +20,8 @@ export async function load() {
       }
     }
   );
-  return { formFieldGroups: response.data.formFieldGroups };
+  console.log(data);
+  return { formFieldGroups: data.formFieldGroups };
 }
 
 export const actions = {
