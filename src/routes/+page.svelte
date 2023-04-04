@@ -15,6 +15,16 @@
               <option value={option.value}>{option.label}</option>
             {/each}
           </select>
+        {:else if field.fieldType === 'radio' || field.fieldType === 'checkbox'}
+          {#each field.options as option}
+            <input
+              type={field.fieldType}
+              name={field.name}
+              id={option.value}
+              value={option.value}
+            />
+            <label for={option.value}>{option.label}</label>
+          {/each}
         {:else}
           <input type={field.fieldType} name={field.name} id={field.name} />
         {/if}
