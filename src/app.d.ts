@@ -5,7 +5,13 @@ declare global {
     // interface Error {}
     // interface Locals {}
     // interface PageData {}
-    // interface Platform {}
+    interface Platform {
+      env: void;
+      context: {
+        waitUntil(promise: Promise<any>): void;
+      };
+      caches: CacheStorage & { default: Cache };
+    }
   }
 }
 
