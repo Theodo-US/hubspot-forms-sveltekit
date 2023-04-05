@@ -1,6 +1,6 @@
 import { HUBSPOT_FORM_ID, HUBSPOT_PORTAL_ID, HUBSPOT_PRIVATE_APP_KEY } from '$env/static/private';
 
-export const ssr = true;
+export const csr = false;
 
 interface FormFieldGroups {
   fields: {
