@@ -1,5 +1,7 @@
 import { HUBSPOT_FORM_ID, HUBSPOT_PORTAL_ID, HUBSPOT_PRIVATE_APP_KEY } from '$env/static/private';
 
+export const csr = false;
+
 interface FormFieldGroups {
   fields: {
     name: string;
@@ -13,6 +15,7 @@ export async function load() {
   const response = await fetch(`https://api.hubapi.com/forms/v2/forms/${HUBSPOT_FORM_ID}`, {
     method: 'GET',
     headers: {
+      'Cache-Control': 'max-age=3600', // cache form response for 1 hour
       Authorization: `Bearer ${HUBSPOT_PRIVATE_APP_KEY}`
     }
   });
