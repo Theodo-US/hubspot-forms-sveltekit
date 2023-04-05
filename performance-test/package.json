@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dino": "artillery run cloudflare-load-test.yml"
+  },
+  "dependencies": {
+    "artillery": "^2.0.0-31",
+    "artillery-engine-playwright": "^0.2.1"
+  }
+}
