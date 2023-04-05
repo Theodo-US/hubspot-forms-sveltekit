@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dino": "artillery run cloudflare-load-test.yml"
+    "test:cloudflare": "artillery run cloudflare-load-test.yml",
+    "test:hubspot": "artillery run hubspot-load-test.yml"
   },
   "dependencies": {
     "artillery": "^2.0.0-31",

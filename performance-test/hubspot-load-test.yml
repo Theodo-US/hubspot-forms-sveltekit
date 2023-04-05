@@ -1,0 +1,24 @@
+config:
+  target: 'https://share.hsforms.com/1JFQbjrblSeCcRLwUvqqLEAebia9'
+  phases:    
+    - duration: 30
+      arrivalRate: 2
+      name: Sustained load
+    - pause: 15
+      name: CLEAR
+    - duration: 15
+      arrivalRate: 5
+      name: Medium burst load
+    - pause: 15
+      name: CLEAR
+    - duration: 5
+      arrivalRate: 10
+      name: Large burst load
+  engines:
+    playwright: {}
+  processor: flows/hubspot-load-test.js
+scenarios:
+  - name: 'Hubspot form submission'
+    engine: playwright
+    flowFunction: 'formSubmissionTest'
+    flow: []
