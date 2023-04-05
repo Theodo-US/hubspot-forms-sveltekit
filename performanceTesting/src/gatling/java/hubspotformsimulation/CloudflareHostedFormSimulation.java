@@ -11,8 +11,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 
 public class CloudflareHostedFormSimulation extends Simulation {
-  int NUMBER_OF_TESTS = 10;
-  int PERIOD_TO_SPREAD_TESTS_OVER_IN_SECONDS = 10;
+  int NUMBER_OF_TESTS = 100;
+  int PERIOD_TO_SPREAD_TESTS_OVER_IN_SECONDS = 20;
   ChainBuilder submit = exec(http("Form").get("/")).exec(
                           http("Submit")
                             .post("?/submit")

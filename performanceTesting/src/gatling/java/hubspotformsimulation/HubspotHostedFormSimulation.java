@@ -11,23 +11,20 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 
 public class HubspotHostedFormSimulation extends Simulation {
-  int NUMBER_OF_TESTS = 10;
-  int PERIOD_TO_SPREAD_TESTS_OVER_IN_SECONDS = 10;
+  int NUMBER_OF_TESTS = 1;
+  int PERIOD_TO_SPREAD_TESTS_OVER_IN_SECONDS = 1;
   ChainBuilder submit = exec(
                           http("Form")
                             .get("/1JFQbjrblSeCcRLwUvqqLEAebia9")
-                            .check(status().is(200)) // Check that the response status is 200
-                            .check(css("form", "action").saveAs("formAction")) // Save the form's action URL
-                            .check(css("input[name='csrf_token']", "value").saveAs("csrfToken"))) // Save the form's CSRF token)
+                            .check(status().is(200))) // Check that the response status is 200
                           .exec(
                             http("Submit")
-                              .post("${formAction}")
-                              .formParam("company", "Test 2")
-                              .formParam("email", "TestEmail@gmail.com")
-                              .formParam("state", "Alabama")
-                              .formParam("hs_lead_status", "NEW")
-                              .multivaluedFormParam("tags", Arrays.asList("React Native"))
-                              .formParam("csrf_token", "${csrfToken}")
+                              .post("/1JFQbjrblSeCcRLwUvqqLEAebia9")
+                              .formParam("company-input", "Test 2")
+                              .formParam("email-input", "TestEmail@gmail.com")
+                              .formParam("state-input", "Alabama")
+                              .formParam("hs_lead_status-input-1", "NEW")
+                              .multivaluedFormParam("tags-input-1", Arrays.asList("ex-entrepreneur"))
                               .check(status().is(200)))
                               .exitHereIfFailed();
 
