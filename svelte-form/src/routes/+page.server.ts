@@ -25,8 +25,8 @@ export async function load() {
 }
 
 export const actions = {
-  submit: async (event) => {
-    const data = await event.request.formData();
+  submit: async ({ request }) => {
+    const data = await request.formData();
     const fields = [];
 
     for (const el of data) {
