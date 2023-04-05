@@ -1,4 +1,5 @@
 import { HUBSPOT_FORM_ID, HUBSPOT_PORTAL_ID, HUBSPOT_PRIVATE_APP_KEY } from '$env/static/private';
+import { redirect } from '@sveltejs/kit';
 
 export const csr = false;
 
@@ -38,7 +39,7 @@ export const actions = {
       });
     }
 
-    await fetch(
+    const result = await fetch(
       `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
       {
         method: 'POST',
@@ -50,6 +51,10 @@ export const actions = {
       }
     );
 
-    return { success: true };
+    if (result.status > 201) {
+      throw redirect(302, '/error');
+    }
+
+    throw redirect(302, '/thank-you');
   }
 };
