@@ -1,0 +1,14 @@
+config:
+  target: 'https://hubspot-forms-sveltekit.pages.dev'
+  phases:
+    - duration: 30
+      arrivalRate: 6
+      name: Medium burst load
+  engines:
+    playwright: { aggregateByName: true }
+  processor: flows/cloudflare-load-test.js
+scenarios:
+  - name: 'Cloudflare form submission medium load'
+    engine: playwright
+    flowFunction: 'formSubmissionTest'
+    flow: []

@@ -34,7 +34,7 @@ export const actions = {
       fields.push({
         name: el[0],
         value: el[1],
-        objectTypeId: el[0] === 'industry' ? '0-2' : '0-1'
+        objectTypeId: '0-1'
       });
     }
 
