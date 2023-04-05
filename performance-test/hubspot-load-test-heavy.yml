@@ -1,0 +1,14 @@
+config:
+  target: 'https://share.hsforms.com/1JFQbjrblSeCcRLwUvqqLEAebia9'
+  phases:    
+    - duration: 18
+      arrivalRate: 10
+      name: Large burst load
+  engines:
+    playwright: { aggregateByName: true }
+  processor: flows/hubspot-load-test.js
+scenarios:
+  - name: 'Hubspot form submission heavy load'
+    engine: playwright
+    flowFunction: 'formSubmissionTest'
+    flow: []
