@@ -30,7 +30,6 @@ export const actions = {
     const fields = [];
 
     for (const el of data) {
-      console.info(el[0]);
       fields.push({
         name: el[0],
         value: el[1],
