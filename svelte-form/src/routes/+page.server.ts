@@ -19,7 +19,7 @@ export async function load() {
       Authorization: `Bearer ${HUBSPOT_PRIVATE_APP_KEY}`
     }
   });
-  const data: FormFieldGroups = await response.json();
+  const data: { formFieldGroups: FormFieldGroups[] } = await response.json();
 
   return data;
 }
