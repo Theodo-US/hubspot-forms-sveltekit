@@ -8,6 +8,7 @@ interface FormFieldGroups {
     label: string;
     fieldType: string;
     options: { value: string; label: string }[];
+    objectTypeId: string;
   }[];
 }
 
@@ -20,21 +21,19 @@ export async function load() {
     }
   });
   const data: { formFieldGroups: FormFieldGroups[] } = await response.json();
-
   return data;
 }
 
 export const actions = {
   submit: async ({ request }) => {
     const data = await request.formData();
-
     const fields = [];
 
     for (const el of data) {
       fields.push({
         name: el[0],
         value: el[1],
-        objectTypeId: '0-1'
+        objectTypeId: el[0] === 'industry' ? '0-2' : '0-1'
       });
     }
 
