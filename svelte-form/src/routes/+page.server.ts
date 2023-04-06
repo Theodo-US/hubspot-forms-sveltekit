@@ -33,7 +33,7 @@ export async function load() {
 
     console.log(response.headers.forEach((v, k) => console.log(`${k}:${v}`)));
     const clone = response.clone();
-    clone.headers.append('Cache-Control', 'max-age=3600');
+    clone.headers.set('Cache-Control', 'max-age=3600');
     await cache.put(request, clone);
   } else {
     console.log('Cache Hit');
