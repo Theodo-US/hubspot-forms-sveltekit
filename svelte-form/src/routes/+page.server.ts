@@ -30,16 +30,16 @@ export async function load() {
   if (!response) {
     console.log('Cache Miss');
     response = await fetch(url, request);
-
-    console.log(response.headers.forEach((v, k) => console.log(`${k}:${v}`)));
-    response = new Response(response.body, response);
-    response.headers.append('Cache-Control', 'max-age=3600');
-    await cache.put(request, response);
+    const clone = new Response(response.body, response);
+    response = response.clone();
+    clone.headers.append('Cache-Control', 'max-age=3600');
+    await cache.put(clone, response);
   } else {
     console.log('Cache Hit');
   }
 
   const data: { formFieldGroups: FormFieldGroups[] } = await response.json();
+
   return data;
 }
 
