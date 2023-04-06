@@ -37,7 +37,8 @@ export async function load() {
       }
     });
 
-    response.headers.append('Cache-Control', 'max-age=3600');
+    console.log(response.headers);
+    response.headers.set('Cache-Control', 'max-age=3600');
     await cache.put(request, response.clone());
   } else {
     console.log('Cache Hit');
