@@ -1,0 +1,14 @@
+config:
+  target: 'https://share.hsforms.com/1JFQbjrblSeCcRLwUvqqLEAebia9'
+  phases:    
+    - duration: 30
+      arrivalRate: 6
+      name: Medium burst load
+  engines:
+    playwright: { aggregateByName: true }
+  processor: flows/hubspot-load-test.js
+scenarios:
+  - name: 'Hubspot form submission medium load'
+    engine: playwright
+    flowFunction: 'formSubmissionTest'
+    flow: []

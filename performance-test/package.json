@@ -1,6 +1,12 @@
 {
   "scripts": {
-    "test:hubspot": "artillery run hubspot-load-test.yml",
+    "test:hubspot-sustained": "artillery run --output ./reports/hubspot-sustained.json ./hubspot/hubspot-load-test-sustained.yml",
+    "test:hubspot-medium": "artillery run --output ./reports/hubspot-medium.json ./hubspot/hubspot-load-test-medium.yml",
+    "test:hubspot-heavy": "artillery run --output ./reports/hubspot-heavy.json ./hubspot/hubspot-load-test-heavy.yml",
+    "report:hubspot-sustained": "artillery report ./reports/hubspot-sustained.json",
+    "report:hubspot-medium": "artillery report ./reports/hubspot-medium.json",
+    "report:hubspot-heavy": "artillery report ./reports/hubspot-heavy.json",
+    "gen:hubspot": "npm run test:hubspot-sustained && npm run report:hubspot-sustained && npm run test:hubspot-medium && npm run report:hubspot-medium && npm run test:hubspot-heavy && npm run report:hubspot-heavy",
     "test:cloudflare-sustained": "artillery run --output ./reports/cloudflare-sustained.json ./cloudflare/cloudflare-load-test-sustained.yml",
     "test:cloudflare-medium": "artillery run --output ./reports/cloudflare-medium.json ./cloudflare/cloudflare-load-test-medium.yml",
     "test:cloudflare-heavy": "artillery run --output ./reports/cloudflare-heavy.json ./cloudflare/cloudflare-load-test-heavy.yml",
