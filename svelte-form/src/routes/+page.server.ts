@@ -23,22 +23,7 @@ export async function load() {
     }
   });
 
-  const cache = caches.default;
-
-  let response: Response = await cache.match(url);
-
-  if (!response) {
-    console.log('Cache Miss');
-    response = await fetch(request);
-    const cacheClone = response.clone();
-    response = response.clone();
-    const cacheObj = new Response(cacheClone.body, response);
-    cacheObj.headers.append('Cache-Control', 'max-age=3600');
-    await cache.put(url, cacheObj);
-  } else {
-    console.log('Cache Hit');
-  }
-
+  const response = await fetch(request);
   const data: { formFieldGroups: FormFieldGroups[] } = await response.json();
 
   return data;
