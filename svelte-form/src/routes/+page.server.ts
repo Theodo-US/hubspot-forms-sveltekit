@@ -43,7 +43,7 @@ export const actions = {
     }
 
     const result = await fetch(
-      `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+      `https://api.hsforms.com/submissions/v3/integration/secure/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
       {
         method: 'POST',
         headers: {
