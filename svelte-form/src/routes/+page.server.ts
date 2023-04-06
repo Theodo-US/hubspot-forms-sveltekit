@@ -25,7 +25,7 @@ export async function load() {
 
   const cache = caches.default;
 
-  let response: Response = await cache.match(request);
+  let response: Response = await cache.match(url);
 
   if (!response) {
     console.log('Cache Miss');
@@ -34,7 +34,7 @@ export async function load() {
     response = response.clone();
     const cacheObj = new Response(cacheClone.body, response);
     cacheObj.headers.append('Cache-Control', 'max-age=3600');
-    await cache.put(request, cacheObj);
+    await cache.put(url, cacheObj);
   } else {
     console.log('Cache Hit');
   }
