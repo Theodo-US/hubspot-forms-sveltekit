@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "test:hubspot-sustained": "artillery run --output ./reports/hubspot-sustained.json hubspot-load-test-sustained.yml",
-    "test:hubspot-medium": "artillery run --output ./reports/hubspot-medium.json hubspot-load-test-medium.yml",
-    "test:hubspot-heavy": "artillery run --output ./reports/hubspot-heavy.json hubspot-load-test-heavy.yml",
+    "test:hubspot-sustained": "artillery run --output ./reports/hubspot-sustained.json ./hubspot/hubspot-load-test-sustained.yml",
+    "test:hubspot-medium": "artillery run --output ./reports/hubspot-medium.json ./hubspot/hubspot-load-test-medium.yml",
+    "test:hubspot-heavy": "artillery run --output ./reports/hubspot-heavy.json ./hubspot/hubspot-load-test-heavy.yml",
     "report:hubspot-sustained": "artillery report ./reports/hubspot-sustained.json",
     "report:hubspot-medium": "artillery report ./reports/hubspot-medium.json",
     "report:hubspot-heavy": "artillery report ./reports/hubspot-heavy.json",

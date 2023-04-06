@@ -14,13 +14,35 @@ interface FormFieldGroups {
 }
 
 export async function load() {
-  const response = await fetch(`https://api.hubapi.com/forms/v2/forms/${HUBSPOT_FORM_ID}`, {
+  const url = new URL(`https://api.hubapi.com/forms/v2/forms/${HUBSPOT_FORM_ID}`);
+  const request = new Request(url, {
     method: 'GET',
     headers: {
       'Cache-Control': 'max-age=3600', // cache form response for 1 hour
       Authorization: `Bearer ${HUBSPOT_PRIVATE_APP_KEY}`
     }
   });
+
+  const cache = caches.default;
+
+  let response: Response = await cache.match(request);
+
+  if (!response) {
+    console.log('Cache Miss');
+    response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'max-age=3600', // cache form response for 1 hour
+        Authorization: `Bearer ${HUBSPOT_PRIVATE_APP_KEY}`
+      }
+    });
+
+    response.headers.append('Cache-Control', 'max-age=3600');
+    await cache.put(request, response.clone());
+  } else {
+    console.log('Cache Hit');
+  }
+
   const data: { formFieldGroups: FormFieldGroups[] } = await response.json();
   return data;
 }
