@@ -1,35 +1,39 @@
 <script>
+	import FieldLabel from './../components/FieldLabel.svelte';
+  import GroupedInput from '../components/GroupedInput.svelte';
+  import SelectInput from '../components/SelectInput.svelte';
+  import Input from '../components/Input.svelte';
+  import Submit from '../components/Submit.svelte';
+  import Paper from '../components/Paper.svelte';
+  import FieldSet from '../components/FieldSet.svelte';
+
   /** @type {import('./$types').PageData} */
   export let data;
 </script>
 
-<h1>Simple Performance Form</h1>
-<form action="?/submit" method="POST">
-  {#each data.formFieldGroups as group}
-    <fieldset>
-      {#each group.fields as field}
-        <label for={field.name}>{field.label}</label>
-        {#if field.fieldType === 'select'}
-          <select name={field.name} id={field.name}>
-            {#each field.options as option}
-              <option value={option.value}>{option.label}</option>
-            {/each}
-          </select>
-        {:else if field.fieldType === 'radio' || field.fieldType === 'checkbox'}
-          {#each field.options as option}
-            <input
-              type={field.fieldType}
-              name={field.name}
-              id={option.value}
-              value={option.value}
-            />
-            <label for={option.value}>{option.label}</label>
-          {/each}
-        {:else}
-          <input type={field.fieldType} name={field.name} id={field.name} />
-        {/if}
-      {/each}
-    </fieldset>
-  {/each}
-  <button type="submit">Submit</button>
-</form>
+<Paper>
+  <h1 class="form-header">Simple Performance Form</h1>
+  <form class="form-body" action="?/submit" method="POST">
+    {#each data.formFieldGroups as group}
+      <FieldSet>
+        {#each group.fields as field}
+          <FieldLabel {field}/>
+          {#if field.fieldType === 'select'}
+            <SelectInput {field}/>
+          {:else if field.fieldType === 'radio' || field.fieldType === 'checkbox'}          
+            <GroupedInput {field}/>      
+          {:else}
+            <Input {field}/>
+          {/if}
+        {/each}
+      </FieldSet>
+    {/each}
+    <Submit />
+  </form>
+</Paper>
+
+<style>
+  .form-header {
+    text-align: center;
+  }
+</style>
