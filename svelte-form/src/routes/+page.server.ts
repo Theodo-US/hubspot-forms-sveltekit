@@ -18,7 +18,7 @@ export async function load() {
   const request = new Request(url, {
     method: 'GET',
     headers: {
-      'Cache-Control': 'max-age=3600', // cache form response for 1 hour
+      'cache-control': 'max-age=3600', // cache form response for 1 hour
       Authorization: `Bearer ${HUBSPOT_PRIVATE_APP_KEY}`
     }
   });
@@ -31,7 +31,7 @@ export async function load() {
     console.log('Cache Miss');
     response = await fetch(url, request);
 
-    console.log(response.headers.entries);
+    console.log(response.headers.entries());
     await cache.put(request, response.clone());
   } else {
     console.log('Cache Hit');
