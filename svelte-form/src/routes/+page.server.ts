@@ -29,11 +29,12 @@ export async function load() {
 
   if (!response) {
     console.log('Cache Miss');
-    response = await fetch(url, request);
-    const clone = new Response(response.body, response);
+    response = await fetch(request);
+    const cacheClone = response.clone();
     response = response.clone();
-    clone.headers.append('Cache-Control', 'max-age=3600');
-    await cache.put(clone, response);
+    const cacheObj = new Response(cacheClone.body, response);
+    cacheObj.headers.append('Cache-Control', 'max-age=3600');
+    await cache.put(request, cacheObj);
   } else {
     console.log('Cache Hit');
   }
