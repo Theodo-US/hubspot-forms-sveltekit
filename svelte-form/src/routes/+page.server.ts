@@ -32,9 +32,9 @@ export async function load() {
     response = await fetch(url, request);
 
     console.log(response.headers.forEach((v, k) => console.log(`${k}:${v}`)));
-    const clone = new Response(response.body, response);
-    clone.headers.append('Cache-Control', 'max-age=3600');
-    await cache.put(request, clone);
+    response = new Response(response.body, response);
+    response.headers.append('Cache-Control', 'max-age=3600');
+    await cache.put(request, response);
   } else {
     console.log('Cache Hit');
   }
