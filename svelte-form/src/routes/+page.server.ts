@@ -31,7 +31,7 @@ export async function load() {
     console.log('Cache Miss');
     response = await fetch(url, request);
 
-    console.log(response.headers.entries());
+    console.log(response.headers.forEach((v, k) => console.log(`${k}:${v}`)));
     await cache.put(request, response.clone());
   } else {
     console.log('Cache Hit');
