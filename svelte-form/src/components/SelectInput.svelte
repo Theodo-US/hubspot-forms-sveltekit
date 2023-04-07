@@ -1,11 +1,7 @@
 <script lang="ts">
-  export let field: {
-    name: string;
-    options: {
-      value: string;
-      label: string;
-    }[]
-  };
+  import type { FormField } from '../routes/+page.server';
+
+  export let field: FormField;
 </script>
 
 <select class="select-input" name={field.name} id={field.name}>
