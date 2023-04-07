@@ -22,7 +22,7 @@
     display: flex;
     flex-grow: 0;
     min-width: 800px;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
     align-items: left;
     justify-content: top;
