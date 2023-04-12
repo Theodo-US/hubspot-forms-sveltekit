@@ -54,12 +54,10 @@ export const actions = {
       }
     );
 
-    console.info(result.status);
-    console.info(result.json());
     if (result.status > 201) {
       throw redirect(302, '/error');
+    } else {
+      throw redirect(302, '/thank-you');
     }
-
-    throw redirect(302, '/thank-you');
   }
 };
