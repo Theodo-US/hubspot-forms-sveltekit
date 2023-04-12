@@ -54,6 +54,8 @@ export const actions = {
       }
     );
 
+    console.info(result.status);
+    console.info(result.json());
     if (result.status > 201) {
       throw redirect(302, '/error');
     }
