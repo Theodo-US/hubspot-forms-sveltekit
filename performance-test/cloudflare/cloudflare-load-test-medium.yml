@@ -2,7 +2,7 @@ config:
   target: 'https://hubspot-forms-sveltekit.pages.dev'
   phases:
     - duration: 30
-      arrivalRate: 6
+      arrivalRate: 5
       name: Medium burst load
   engines:
     playwright: { aggregateByName: true }

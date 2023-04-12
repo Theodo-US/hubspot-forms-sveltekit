@@ -2,7 +2,7 @@ config:
   target: 'https://share.hsforms.com/1JFQbjrblSeCcRLwUvqqLEAebia9'
   phases:    
     - duration: 30
-      arrivalRate: 6
+      arrivalRate: 5
       name: Medium burst load
   engines:
     playwright: { aggregateByName: true }
