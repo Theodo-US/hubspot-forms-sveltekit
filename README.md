@@ -1,6 +1,6 @@
 # HubSpot Forms and CloudFlare Pages
 
-This repository is a sample repository used for demonstration and testing purposes for this TODO ADD LINK article.
+This repository is a sample repository used for demonstration and testing purposes for this [article](https://blog.theodo.com/2023/04/hubspot-forms-with-cloudflare/).
 
 ## Setup
 
