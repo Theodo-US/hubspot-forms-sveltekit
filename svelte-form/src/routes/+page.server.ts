@@ -1,16 +1,15 @@
 import { HUBSPOT_FORM_ID, HUBSPOT_PORTAL_ID, HUBSPOT_PRIVATE_APP_KEY } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 
-export const csr = false;
-
-interface FormFieldGroups {
-  fields: {
-    name: string;
-    label: string;
-    fieldType: string;
-    options: { value: string; label: string }[];
-    objectTypeId: string;
-  }[];
+export interface FormField {
+  name: string;
+  label: string;
+  fieldType: string;
+  options: { value: string; label: string }[];
+  objectTypeId: string;
+}
+export interface FormFieldGroup {
+  fields: FormField[];
 }
 
 export async function load() {
@@ -24,7 +23,7 @@ export async function load() {
   });
 
   const response = await fetch(request);
-  const data: { formFieldGroups: FormFieldGroups[] } = await response.json();
+  const data: { formFieldGroups: FormFieldGroup[] } = await response.json();
 
   return data;
 }
@@ -34,14 +33,15 @@ export const actions = {
     const data = await request.formData();
     const fields = [];
 
-    for (const el of data) {
+    for (const [key, value] of data) {
+      const values = JSON.parse(value as string);
       fields.push({
-        name: el[0],
-        value: el[1],
-        objectTypeId: '0-1'
+        name: key,
+        value: values.value,
+        objectTypeId: values.typeId
       });
     }
-
+    console.log(fields);
     const result = await fetch(
       `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
       {

@@ -1,8 +1,7 @@
 <script lang="ts">
-  export let field: {
-    name: string;
-    fieldType: string;
-  };
+  import type { FormField } from '../routes/+page.server';
+
+  export let field: FormField;
 </script>
 
 <input class="field-input" type={field.fieldType} name={field.name} id={field.name} />
